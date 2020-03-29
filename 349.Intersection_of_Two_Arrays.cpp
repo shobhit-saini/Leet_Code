@@ -39,3 +39,34 @@ public:
         return v;
     }
 };
+///////////Approach2////////////////////////////////////////////////
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        map<int, int> mp, mp1;
+        int i;
+        for(i = 0; i < nums1.size(); i++)
+        {
+            mp[nums1[i]] = 1;
+        }
+        for(i = 0; i < nums2.size(); i++)
+        {
+            mp1[nums2[i]] = 1;
+        }
+        map<int, int>:: iterator itr, itr1 = mp1.begin();
+        vector<int>v;
+        for(itr = mp.begin(); itr != mp.end() && itr1 != mp1.end();)
+        {
+            if(itr -> first == itr1 -> first)
+            {
+                v.push_back(itr->first);
+                itr++; itr1++;
+            }
+            else if(itr -> first < itr1 -> first)
+                itr++;
+            else
+                itr1++;
+        }
+        return v;
+    }
+};
