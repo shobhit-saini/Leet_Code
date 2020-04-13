@@ -44,3 +44,68 @@ public:
         return A ;
     }
 };
+///////// Approach 1///////////
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& A) {
+        
+        int i = 0 , j = 0 , size = A.size() , val , k ;
+        vector<int> v1 ;
+        while( i < size &&  A[i] < 0 )
+        {
+            i++ ;
+        }
+        
+        k = i - 1 ;
+        j = i ;
+        while( j < size && k >= 0 ) 
+        {
+            if( A[j] < abs(A[k]) )
+            {
+                v1.push_back( A[j]*A[j] ) ;
+                j++ ;
+            }
+            else
+            {
+                v1.push_back( A[k]*A[k] ) ;
+                k-- ;
+            }
+        }
+        i = j ;
+        while( i < size )
+        {
+            v1.push_back(A[i]*A[i]) ;
+            i++ ;
+        }
+        while( k >= 0 )
+        {
+            v1.push_back( A[k]*A[k] ) ;
+            k-- ;
+        }
+        return v1 ;
+    }
+};
+/////////////Approach 2//////////////////
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& A) {
+        
+        int i = 0 , size = A.size() , val , j = size - 1 , k = j ;
+        vector<int> v1(size) ;
+        while( i <= j ) 
+        {
+            if( abs(A[i]) < A[j] )
+            {
+                v1[k] = A[j]*A[j] ;
+                j-- ;
+            }
+            else
+            {
+                v1[k] = A[i]*A[i] ;
+                i++;
+            }
+            k--;
+        }
+        return v1 ;
+    }
+};
