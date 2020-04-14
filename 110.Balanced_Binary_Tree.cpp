@@ -40,26 +40,35 @@ Return false.
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
 class Solution {
 public:
-    int flag = 0 ;
-    int fun( TreeNode* root )
+
+    int cal( TreeNode* root )
     {
         if( root == NULL )
-            return 0;
-        int L = fun( root -> left ) ;
-        int R = fun( root -> right ) ;
-        if( abs(L - R) > 1 )
-            flag = 1 ;
+            return 0 ;
+        int L = cal( root -> left ) ;
+        int R = cal( root-> right ) ;
+        if( L == -1 || R == -1 || abs(L - R) > 1)
+            return -1 ;
         if( L > R )
             return L + 1 ;
         else
-            return R + 1 ;        
+            return R + 1 ;
     }
     bool isBalanced(TreeNode* root) {
         
-        fun(root) ;
-        if( flag == 1 )
+        int res = cal( root ) ;
+        if( res == -1 )
             return false ;
         return true ;
     }
