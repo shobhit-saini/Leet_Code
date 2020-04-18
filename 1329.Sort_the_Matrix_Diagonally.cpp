@@ -34,6 +34,7 @@ public:
                 v1.push_back(mat[i][j]) ;
             }
             v.push_back(v1) ;
+            
             k++ ;
         }
         k = 1 ; 
@@ -49,17 +50,13 @@ public:
         }
         for( i = 0 ; i < v.size() ; i++ )
         {
-            for( j = 0 ; j < v[i].size() ; j++ )
-            {
-                sort( v[i].begin() , v[i].end() ) ;
-            }
+           sort( v[i].begin() , v[i].end() ) ;
         }
         
         k = 0 ; 
         int l = 0 , m ;
         while( k != col_size )
         {
-            v1.clear() ;
             
             for( j = k , i = 0, m = 0 ; i < row_size && j < col_size ; j++ , i++ , m++ )
             {
@@ -71,7 +68,6 @@ public:
         k = 1 ; 
         while( k != row_size )
         {
-            v1.clear() ;
             for( j = 0 , i = k , m = 0 ; i < row_size && j < col_size ; j++ , i++ , m++ )
             {
                 mat[i][j] = v[l][m] ;
