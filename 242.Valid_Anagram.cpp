@@ -21,21 +21,16 @@ public:
         
         int size1 = s.size() , size2 = t.size() , i , ht1[26] , ht2[26];
         for( i = 0 ; i < 26 ; i++ )
-        {
             ht1[i] = 0 ;
-            ht2[i] = 0 ;
-        }
         for( i = 0 ; i < size1 ; i++ )
             ht1[s[i]% 26] += 1;
         
         for( i = 0 ; i < size2 ; i++ )
-            ht2[t[i]% 26] += 1 ;
+            ht1[t[i]% 26] -= 1 ;
         
         for( i = 0 ; i < 26 ; i++ )
-        {
-            if( ht1[i] != ht2[i] )
+            if( ht1[i] != 0 )
                 return false ;
-        }
         return true ;
     }
 };
