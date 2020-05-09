@@ -32,7 +32,6 @@ class Solution {
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
         
-        vector<int>v(numCourses, 0);
         vector<int>indegree(numCourses, 0);
         int i, j, u, count = 0;
         queue<int>q;
