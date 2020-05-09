@@ -29,7 +29,7 @@ public:
             }
             i = i*2;
         }
-        while( low < high )
+        while( low <= high )
         {
             mid = (low+high)/2;
             if( mid*mid == num )
