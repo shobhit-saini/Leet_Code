@@ -15,49 +15,26 @@ NOTE: input types have been changed on April 15, 2019. Please reset to default c
 */
 class Solution {
 public:
+    bool static comp( vector<int>v1, vector<int>v2 )
+    {
+        return v1[0] < v2[0];
+    }
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
         
-        vector<vector<int>> v2 ;
-        vector<int>v1(2) ;
-        sort( intervals.begin() , intervals.end() ) ;
-        int size = intervals.size() , i , j , max ;
-        for( i = 0 ; i < size ;  )
+        vector<vector<int>> res ;
+        if( intervals.size() == 0 )
+            return res;
+        sort( intervals.begin() , intervals.end(), comp ) ;
+        res.push_back(intervals[0]);
+        int size = intervals.size() , i , j ;
+        for( i = 1; i < size; i++ )
         {
-            v1[0] = intervals[i][0] ;
-            max = intervals[i][1] ;
-            j = i + 1 ;
-            if( j == size )
-            {
-                v1[1] = intervals[i][1] ;
-                
-            }
+            if( res.back()[1] < intervals[i][0]  )
+                res.push_back(intervals[i]);
             else
-            {
-                while( 1 )
-                {
-                    if( j == size )
-                    {
-                        v1[1] = max ;
-                        break ;
-                    }
-                    else
-                    {
-                        if( max < intervals[j][0] )
-                        {
-                            v1[1] = max ; 
-                            break ;
-                        }
-                        else 
-                        {
-                            max = max > intervals[j][1] ? max : intervals[j][1] ;
-                        }
-                    }
-                    j++ ;
-                }
-            }
-             v2.push_back(v1) ;
-            i = j ;
+                res.back()[1] = max(res.back()[1], intervals[i][1]);
         }
-        return v2 ;
+        
+        return res;
     }
 };
