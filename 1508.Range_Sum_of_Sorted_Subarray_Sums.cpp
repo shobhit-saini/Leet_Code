@@ -59,3 +59,31 @@ public:
         return sum;
     }
 };
+///////////////////////////////////////////////////Solution-2////////////////////////////////////////////////////////////////////////////////////////////////////////
+class Solution {
+public:
+    int rangeSum(vector<int>& nums, int n, int left, int right) {
+        
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int,int>>>pq;
+        int i, res = 0;
+        for( i = 0; i < n; i++ )
+        {
+            pq.push({nums[i], i+1});
+        }
+        
+        for( i = 1; i <= right; i++ )
+        {
+            auto p = pq.top();
+            pq.pop();
+            if( left <= i )
+            {
+                res += p.first;
+            }
+            if( p.second < n )
+            {
+                pq.push({ p.first + nums[p.second++], p.second });
+            }
+        }
+        return res;
+    }
+};
